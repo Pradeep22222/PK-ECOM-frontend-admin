@@ -1,0 +1,11 @@
+.page-main {
+  min-height: 70vh;
+}
+.form {
+  border: 1px solid rgba(55, 54, 54, 0.317);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.836);
+  width:400px;
+  margin:3rem auto 0;
+}
