@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 import { Footer } from "../../components/footer/Footer";
 import { Header } from "../../components/header/Header";
 import Button from "react-bootstrap/Button";
@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
 const AdminRegistrationPage = () => {
   const [form, setForm] = useState({});
+  const [response, setResponse] = useState({});
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
@@ -78,6 +79,13 @@ const AdminRegistrationPage = () => {
         <div className="form">
           <Form onSubmit={handleOnSubmit}>
             <h1>New admin registration</h1>
+            {response.message && (
+              <Alert
+                variant={response.status === "success" ? "success" : "danger"}
+              >
+                {response.message}
+              </Alert>
+            )}
             {fields.map((item, i) => (
               <CustomInputField
                 key={i}
