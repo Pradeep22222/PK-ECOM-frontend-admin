@@ -5,6 +5,7 @@ import { Header } from "../../components/header/Header";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
+import { postUser } from "../../helpers/axiosHelper";
 const AdminRegistrationPage = () => {
   const [form, setForm] = useState({});
   const [response, setResponse] = useState({});
@@ -12,8 +13,14 @@ const AdminRegistrationPage = () => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async(e) => {
     e.preventDefault();
+    const { confirmPassword, ...rest } = form;
+    if (confirmPassword !== rest.password) {
+      return alert("password do not match");
+    }
+    const result = await postUser(rest);
+    setResponse(result);
     console.log(form);
   };
   const fields = [
