@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container } from "react-bootstrap";
@@ -7,14 +7,24 @@ import { Header } from "../../components/header/Header";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
 
 const LoginPage = () => {
+  const [form,setForm] =useState({})
+  const handleOnChange = e => {
+    const { name, value } = e.target;
+    setForm({...form, [name]:value})
+  }
+  const handleOnSubmit = e => {
+    e.preventDefault();
+    console.log(form)
+  }
   return (
     <div>
       <Header></Header>
       <Container className="page-main">
         <div className="form">
-          <Form>
+          <Form onSubmit={handleOnSubmit}>
             <h1>Admin login</h1>
             <CustomInputField
+              onChange={handleOnChange}
               label="email"
               name="email"
               type="email"
@@ -22,6 +32,7 @@ const LoginPage = () => {
               required
             ></CustomInputField>
             <CustomInputField
+              onChange={handleOnChange}
               label="password"
               name="password"
               type="password"
