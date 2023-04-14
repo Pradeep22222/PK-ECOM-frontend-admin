@@ -1,5 +1,6 @@
-import { Button } from "react-bootstrap";
 import "./App.css";
+  import { ToastContainer } from "react-toastify";
+  import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/admin-login/LoginPage";
 import AdminRegistrationPage from "./pages/admin-registration/AdminRegistrationPage";
@@ -18,6 +19,7 @@ function App() {
           ></Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }

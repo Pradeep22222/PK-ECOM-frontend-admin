@@ -1,12 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, {useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {  useDispatch} from "react-redux";
 import { Container } from "react-bootstrap";
 import { Footer } from "../../components/footer/Footer";
 import { Header } from "../../components/header/Header";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
+import { logInUserAction } from "./userAction";
 
 const LoginPage = () => {
+  const dispatch=useDispatch()
   const [form,setForm] =useState({})
   const handleOnChange = e => {
     const { name, value } = e.target;
@@ -15,6 +18,7 @@ const LoginPage = () => {
   const handleOnSubmit = e => {
     e.preventDefault();
     console.log(form)
+    dispatch(logInUserAction(form));
   }
   return (
     <div>
