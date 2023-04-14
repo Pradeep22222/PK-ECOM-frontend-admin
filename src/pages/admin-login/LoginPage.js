@@ -1,16 +1,22 @@
-import React, {useState } from "react";
+import React, {useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {  useDispatch} from "react-redux";
+import {  useDispatch, useSelector} from "react-redux";
 import { Container } from "react-bootstrap";
 import { Footer } from "../../components/footer/Footer";
 import { Header } from "../../components/header/Header";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
 import { logInUserAction } from "./userAction";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const dispatch=useDispatch()
-  const [form,setForm] =useState({})
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const [form, setForm] = useState({})
+  const { user } = useSelector((state) => state.admin)
+  useEffect(() => {
+    user._id && navigate("/dashboard")
+  }, [user]);
   const handleOnChange = e => {
     const { name, value } = e.target;
     setForm({...form, [name]:value})

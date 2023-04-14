@@ -1,16 +1,21 @@
 import "./App.css";
-  import { ToastContainer } from "react-toastify";
-  import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/admin-login/LoginPage";
 import AdminRegistrationPage from "./pages/admin-registration/AdminRegistrationPage";
 import EmailVerification from "./pages/admin-registration/EmailVerification";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          {/* private routes */}
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+
+          {/* public routes */}
           <Route path="/" element={<LoginPage />}></Route>
           <Route path="/register" element={<AdminRegistrationPage />}></Route>
           <Route
