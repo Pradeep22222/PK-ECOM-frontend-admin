@@ -21,7 +21,7 @@ const AdminRegistrationPage = () => {
     }
     const result = await postUser(rest);
     setResponse(result);
-    console.log(form);
+
   };
   const fields = [
     {

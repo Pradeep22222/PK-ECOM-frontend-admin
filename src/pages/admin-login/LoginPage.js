@@ -23,7 +23,6 @@ const LoginPage = () => {
   }
   const handleOnSubmit = e => {
     e.preventDefault();
-    console.log(form)
     dispatch(logInUserAction(form));
   }
   return (
