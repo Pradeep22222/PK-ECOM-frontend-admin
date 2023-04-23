@@ -1,30 +1,33 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {  useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
 import { Footer } from "../../components/footer/Footer";
 import { Header } from "../../components/header/Header";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
 import { logInUserAction } from "./userAction";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [form, setForm] = useState({})
-  const { user } = useSelector((state) => state.admin)
+  const [form, setForm] = useState({});
+  const { user } = useSelector((state) => state.admin);
+  const location = useLocation();
+  const origin =
+    (location.state && location.state.from && location.state.from.pathname) || "/dashboard"
   useEffect(() => {
-    user._id && navigate("/dashboard")
-  }, [user]);
-  const handleOnChange = e => {
+    user._id && navigate(origin);
+  }, [user, navigate]);
+  const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setForm({...form, [name]:value})
-  }
-  const handleOnSubmit = e => {
+    setForm({ ...form, [name]: value });
+  };
+  const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(logInUserAction(form));
-  }
+  };
   return (
     <div>
       <Header></Header>
@@ -34,7 +37,7 @@ const LoginPage = () => {
             <h1>Admin login</h1>
             <CustomInputField
               onChange={handleOnChange}
-              label="email"
+              label="Email"
               name="email"
               type="email"
               placeholder="pradeepdhital001@gmail.com"
@@ -42,13 +45,15 @@ const LoginPage = () => {
             ></CustomInputField>
             <CustomInputField
               onChange={handleOnChange}
-              label="password"
+              label="Password"
               name="password"
               type="password"
               placeholder="********"
               required
             ></CustomInputField>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="login_button">
+              Submit
+            </Button>
           </Form>
         </div>
       </Container>

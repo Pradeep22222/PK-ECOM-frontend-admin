@@ -4,7 +4,11 @@ import { setAdminUser } from "./userSlice";
 export const logInUserAction = (data) => async (dispatch) => {
   const resultPromise = loginAdminUser(data);
   toast.promise(resultPromise, { pending: "please wait..." });
-  const { status, message, user } = await resultPromise;
+  const { status, message, user, refreshJWT, accessJWT } = await resultPromise;
   toast[status](message);
-  status === "success" && dispatch(setAdminUser(user));
+  if (status === "success") {
+    sessionStorage.setItem("accessJWT", accessJWT);
+    localStorage.setItem("refreshJWT", refreshJWT);
+    dispatch(setAdminUser(user));
+  }
 };
