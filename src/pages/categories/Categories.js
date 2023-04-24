@@ -1,7 +1,7 @@
 import React from "react";
 import { AdminLayout } from "../../components/layout/AdminLayout";
 
-const Categories = ({}) => {
+const Categories = () => {
   return <AdminLayout>Categories</AdminLayout>;
 };
 

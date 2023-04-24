@@ -19,7 +19,7 @@ const LoginPage = () => {
     (location.state && location.state.from && location.state.from.pathname) || "/dashboard"
   useEffect(() => {
     user._id && navigate(origin);
-  }, [user, navigate]);
+  }, [user, navigate,origin]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
