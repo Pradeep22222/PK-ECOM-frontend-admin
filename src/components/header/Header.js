@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link, useNavigate,  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pklogo from "./../../../src/assits/images/logo/pk.png";
 import { setShowSidemenu } from "../../pages/system-state/systemSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,9 +13,9 @@ export const Header = () => {
   const handleShow = () => dispatch(setShowSidemenu(true));
   const { user } = useSelector((state) => state.admin);
   const handleOnLogout = () => {
-    dispatch(logoutUserAction({}))
-    navigate("/")
-  }
+    dispatch(logoutUserAction({}));
+    navigate("/");
+  };
   return (
     <Navbar variant="dark" expand="md" className="header">
       <Container>
@@ -29,7 +29,7 @@ export const Header = () => {
           <Nav className="ms-auto">
             {user._id ? (
               <>
-                <Link className="nav-link"  onClick={handleOnLogout}>
+                <Link className="nav-link" onClick={handleOnLogout}>
                   <i className="fa-solid fa-right-from-bracket"></i> Logout
                 </Link>
               </>

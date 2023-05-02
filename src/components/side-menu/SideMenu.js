@@ -17,7 +17,7 @@ export const SideMenu = () => {
         </Offcanvas.Header>
         <hr />
         <Offcanvas.Body>
-          <ListGroup variant="flush" classNameName="fs-5">
+          <ListGroup variant="flush" className="fs-5">
             <ListGroup.Item>
               <Link onClick={handleClose} to="/dashboard" className="nav-link">
                 <i className="fa-solid fa-gauge"></i> Dashboard
@@ -55,7 +55,7 @@ export const SideMenu = () => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Link onClick={handleClose} to="/settings" className="nav-link">
-                <i className="fa-solid fa-gears"></i> Settings
+                <i className="fa-solid fa-gears"></i> c
               </Link>
             </ListGroup.Item>
           </ListGroup>

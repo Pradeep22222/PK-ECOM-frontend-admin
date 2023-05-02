@@ -16,10 +16,11 @@ const LoginPage = () => {
   const { user } = useSelector((state) => state.admin);
   const location = useLocation();
   const origin =
-    (location.state && location.state.from && location.state.from.pathname) || "/dashboard"
+    (location.state && location.state.from && location.state.from.pathname) ||
+    "/dashboard";
   useEffect(() => {
     user._id && navigate(origin);
-  }, [user, navigate,origin]);
+  }, [user, navigate, origin]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
