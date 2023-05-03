@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCategoriesAction } from '../../pages/categories/categoryAction'
-import { Button, Row, Table } from 'react-bootstrap'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategoriesAction } from "../../pages/categories/categoryAction";
+import { Button, Row, Table } from "react-bootstrap";
 
 export const CategoryTable = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
-    useEffect(() => {
-        dispatch(getCategoriesAction());
-    },[])
+  useEffect(() => {
+    dispatch(getCategoriesAction());
+  }, []);
   return (
     <Row>
-      <Table stripped hover bordered>
+      <Table stripped="true" hover bordered>
         <thead>
           <tr>
             <th>Status</th>
@@ -23,10 +23,10 @@ export const CategoryTable = () => {
         <tbody>
           {categories.length > 0 &&
             categories.map((item, i) => (
-              <tr>
+              <tr key={i}>
                 <td>{item.status}</td>
                 <td>{item.name}</td>
-                <td>{item.parentId?"children":"parent"}</td>
+                <td>{item.parentId ? "children" : "parent"}</td>
                 <td>
                   <Button variant="danger">Delete</Button>
                 </td>
@@ -36,5 +36,4 @@ export const CategoryTable = () => {
       </Table>
     </Row>
   );
-  
-}
+};
