@@ -3,15 +3,13 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { postCategoriesAction } from "../../pages/categories/categoryAction";
 const initialState = {
-  status: "inactive",.
-    
-    
+  status: "inactive",
   name: "",
   parentId: null,
 };
 export const AddCatForm = () => {
   const [form, setForm] = useState(initialState);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categories);
   const handleOnChange = (e) => {
     let { checked, name, value } = e.target;
