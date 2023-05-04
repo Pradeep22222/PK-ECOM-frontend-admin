@@ -25,7 +25,7 @@ export const EditCatForm = ({selectedCat}) => {
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const { __v, slug, ...rest } = form;
+    const { __v, slug, createdAt, updatedAt, ...rest } = form;
     dispatch(updateCategoriesAction(rest));
   };
   return (
