@@ -4,14 +4,13 @@ import { CategoryTable } from "../../components/categoryTable/CategoryTable";
 import { AddCatForm } from "../../components/categoryForm/AddCatForm";
 
 const Categories = () => {
-  return <AdminLayout>
-    <h2>Categories management</h2>
-    {/* form */}
-<AddCatForm></AddCatForm>
-
-    {/* table */}
-    <CategoryTable></CategoryTable>
-  </AdminLayout>;
+  return (
+    <AdminLayout>
+      <h2>Categories management</h2>
+      <AddCatForm></AddCatForm>
+      <CategoryTable></CategoryTable>
+    </AdminLayout>
+  );
 };
 
 export default Categories;

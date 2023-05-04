@@ -64,3 +64,14 @@ export const postCategories = (data) => {
   };
   return apiProcessor(option);
 };
+
+
+// update category
+export const updateCategory = (data) => {
+  const option = {
+    method: "put",
+    url: categoriesEp,
+    data,
+  };
+  return apiProcessor(option);
+};
