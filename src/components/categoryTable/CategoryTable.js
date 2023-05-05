@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoriesAction } from "../../pages/categories/categoryAction";
+import {
+  deleteCategoriesAction,
+  getCategoriesAction,
+} from "../../pages/categories/categoryAction";
 import { Button, Row, Table } from "react-bootstrap";
 import { EditCatForm } from "../categoryForm/EditCatForm";
 import { setModalShow } from "../../pages/system-state/systemSlice";
@@ -15,7 +18,13 @@ export const CategoryTable = () => {
 
   const handleOnEdit = (cat) => {
     setSelectedCat(cat);
-    dispatch(setModalShow())
+    dispatch(setModalShow());
+  };
+
+  const handleOnDelete = (_id) => {
+    if (window.confirm("Are you sure you want to delete the category?")) {
+      dispatch(deleteCategoriesAction(_id));
+    }
   };
   const parentCats = categories.filter(({ parentId }) => !parentId);
   const childCats = categories.filter(({ parentId }) => parentId);
@@ -46,7 +55,12 @@ export const CategoryTable = () => {
                   <td>{item.name}</td>
                   <td>{item.parentId ? "children" : "parent"}</td>
                   <td>
-                    <Button variant="danger">Delete</Button>{" "}
+                    <Button
+                      variant="danger"
+                      onClick={() => handleOnDelete(item._id)}
+                    >
+                      Delete
+                    </Button>{" "}
                     <Button
                       variant="warning"
                       onClick={() => handleOnEdit(item)}
@@ -71,7 +85,12 @@ export const CategoryTable = () => {
                         <td>{cat.name}</td>
                         <td>{cat.parentId ? "children" : "parent"}</td>
                         <td>
-                          <Button variant="danger">Delete</Button>{" "}
+                          <Button
+                            variant="danger"
+                            onClick={() => handleOnDelete(cat._id)}
+                          >
+                            Delete
+                          </Button>{" "}
                           <Button
                             variant="warning"
                             onClick={() => handleOnEdit(cat)}
