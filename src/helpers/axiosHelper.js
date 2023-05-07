@@ -3,12 +3,16 @@ const rootUrl = process.env.REACT_APP_API_ENDPOINT;
 const adminUserEp = rootUrl + "/admin-user";
 const categoriesEp = rootUrl + "/categories";
 
-const apiProcessor = async ({ method, url, data }) => {
+const apiProcessor = async ({ method, url, data, isPrivate }) => {
   try {
+    const headers = isPrivate
+      ? { Authorization: sessionStorage.getItem("accessJWT") }
+      : null;
     const response = await axios({
       method,
       url,
       data,
+      headers,
     });
     return response.data;
   } catch (error) {
@@ -52,6 +56,7 @@ export const fetchCategories = (_id) => {
   const option = {
     method: "get",
     url: _id ? categoriesEp + "/" + _id : categoriesEp,
+    isPrivate: true,
   };
   return apiProcessor(option);
 };
@@ -61,6 +66,7 @@ export const postCategories = (data) => {
     method: "post",
     url: categoriesEp,
     data,
+    isPrivate: true,
   };
   return apiProcessor(option);
 };
@@ -71,11 +77,12 @@ export const updateCategory = (data) => {
     method: "put",
     url: categoriesEp,
     data,
+    isPrivate: true,
   };
   return apiProcessor(option);
 };
 
-// dlete category
+// delete category
 
 export const deleteCategory = (_id) => {
   const option = {
