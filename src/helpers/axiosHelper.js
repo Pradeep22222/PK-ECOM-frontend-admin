@@ -40,6 +40,7 @@ export const emailVerifyAdminUser = (data) => {
   };
   return apiProcessor(option);
 };
+// login admin user
 export const loginAdminUser = (data) => {
   const option = {
     method: "post",
@@ -48,7 +49,15 @@ export const loginAdminUser = (data) => {
   };
   return apiProcessor(option);
 };
-
+// fetch admin user account
+export const getAdminUser = () => {
+  const option = {
+    method: "get",
+    url: adminUserEp,
+    isPrivate: true,
+  };
+  return apiProcessor(option);
+};
 // =========== category api calls
 
 // fetch categories

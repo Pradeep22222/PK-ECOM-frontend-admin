@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import { Footer } from "../../components/footer/Footer";
 import { Header } from "../../components/header/Header";
 import { CustomInputField } from "../../components/customInputfields/CustomInputField";
-import { logInUserAction } from "./userAction";
+import { autoLogin, logInUserAction } from "./userAction";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -19,8 +19,8 @@ const LoginPage = () => {
     (location.state && location.state.from && location.state.from.pathname) ||
     "/dashboard";
   useEffect(() => {
-    user._id && navigate(origin);
-  }, [user, navigate, origin]);
+    user._id ? navigate(origin) : dispatch(autoLogin());
+  }, [user, navigate, dispatch, origin]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
