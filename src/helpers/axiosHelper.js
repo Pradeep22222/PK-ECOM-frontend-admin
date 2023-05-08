@@ -16,9 +16,22 @@ const apiProcessor = async ({ method, url, data, isPrivate, token }) => {
     });
     return response.data;
   } catch (error) {
+    let message = error.message;
+    if (error.response && error.response.status === 401) {
+      sessionStorage.removeItem("accessJWT");
+      localStorage.removeItem("refreshJWT");
+    }
+    if (error.response && error.response.data) {
+      message = error.response.data.messge;
+    }
+    if (message === "jwt expired") {
+      // call the api to get new access jwt and store in the session and re-call the api processor
+      const accessJWT = await getNewAccessJWT();
+      if (accessJWT) {return apiProcessor({ method, url, data, isPrivate, token });}
+    }
     return {
       status: "error",
-      message: error.message,
+      message,
     };
   }
 };
